@@ -23,15 +23,12 @@ public class PessoaResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<PessoaDTO> findById(@PathVariable Integer id){
-		Pessoa obj = service.FindById(id);
-		return ResponseEntity.ok().body(new PessoaDTO(obj));
+		return ResponseEntity.ok(service.FindById(id));
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<PessoaDTO>> findAll(){
-		List<Pessoa> list = service.findAll();
-		List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO); 
+		return ResponseEntity.ok(service.findAll());
 	}
 
 }
