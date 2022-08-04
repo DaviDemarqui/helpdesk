@@ -21,7 +21,7 @@ public class PessoaResource {
 	@Autowired
 	private PessoaService service;
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping("{id}")
 	public ResponseEntity<PessoaDTO> findById(@PathVariable Integer id){
 		return ResponseEntity.ok(service.FindById(id));
 	}

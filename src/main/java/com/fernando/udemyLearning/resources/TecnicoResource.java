@@ -2,7 +2,6 @@ package com.fernando.udemyLearning.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -28,17 +27,14 @@ public class TecnicoResource {
 	@Autowired
 	private TecnicoService service;
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping("{id}")
 	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id){
-		Tecnico obj = service.findById(id);
-		return ResponseEntity.ok().body(new TecnicoDTO(obj));
+		return ResponseEntity.ok(service.findById(id));
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<TecnicoDTO>> findAll(){
-		List<Tecnico> list = service.findAll();
-		List<TecnicoDTO> listDTO = list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO); 
+		return ResponseEntity.ok(service.findAll());
 	}
 	
 	@PostMapping
